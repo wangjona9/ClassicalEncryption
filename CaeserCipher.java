@@ -1,4 +1,4 @@
-public class ClassicalEncryption {
+public class CaeserCipher {
 
     public static String encode(String plaintext, int key) {
         char[] charArray = plaintext.toCharArray();
@@ -16,6 +16,22 @@ public class ClassicalEncryption {
         return encode(plaintext, 26 - key);
     }
 
+    public static boolean validateInput(String instruction, String input) {
+        if (!instruction.equals("encode") && !instruction.equals("decode")) {
+            System.err.println("Invalid instruction. Please use encode/decode");
+            return false;
+        }
+
+        return true;
+    }
+
+    public static void processInput(String instruction, String input) {
+        for (int key = 0; key < 26; key++) {
+            String result = instruction.equals("encode") ? encode(input, key) : decode(input, key);
+            System.out.println("Key " + key + ": " + result);
+        }
+    }
+
     public static void main(String[] args) {
         if (args.length != 2) {
             System.err.println("Invalid input. Please use a correct number of args.");
@@ -25,19 +41,9 @@ public class ClassicalEncryption {
         String instruction = args[0];
         String input = args[1];
 
-        if (!instruction.equals("encode") && !instruction.equals("decode")) {
-            System.err.println("Invalid instruction. Please use encode/decode");
-            System.exit(1);
-        }
-
-        if (!input.matches("[a-z]+")) {
-            System.err.println("Invalid input string. Please contain only lowercase characters.");
-            System.exit(1);
-        }
-
-        for (int key = 0; key < 26; key++) {
-            String result = instruction.equals("encode") ? encode(input, key) : decode(input, key);
-            System.out.println("Key " + key + ": " + result);
+        if (validateInput(instruction, input)) {
+            processInput(instruction, input);
         }
     }
 }
+
