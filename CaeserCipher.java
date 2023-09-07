@@ -1,23 +1,23 @@
 public class CaeserCipher {
 
     public static String encode(String plaintext, int key) {
-        char[] charArray = plaintext.toCharArray();
+        char[] charArray = plaintext.toCharArray(); // Instantiate new charArray
 
-        for (int i = 0; i < charArray.length; i++) {
-            char c = charArray[i];
-            char encodedChar = (char) ((c - 'a' + key) % 26 + 'a');
-            charArray[i] = encodedChar;
+        for (int i = 0; i < charArray.length; i++) { // Loop through charArray
+            char c = charArray[i]; // Set char as index of charArray
+            char encodedChar = (char) ((c - 'a' + key) % 26 + 'a'); // Convert c to unicode
+            charArray[i] = encodedChar; // set the unicoded char as the index value in charArray
         }
 
-        return new String(charArray);
+        return new String(charArray); // Return the ciphered charArray
     }
 
     public static String decode(String plaintext, int key) {
-        return encode(plaintext, 26 - key);
+        return encode(plaintext, 26 - key); // Call encode function with unicode to represent decode
     }
 
     public static boolean validateInput(String instruction, String input) {
-        if (!instruction.equals("encode") && !instruction.equals("decode")) {
+        if (!instruction.equals("encode") && !instruction.equals("decode")) { // Output error for invalid Instruction
             System.err.println("Invalid instruction. Please use encode/decode");
             return false;
         }
@@ -26,14 +26,14 @@ public class CaeserCipher {
     }
 
     public static void processInput(String instruction, String input) {
-        for (int key = 0; key < 26; key++) {
+        for (int key = 0; key < 26; key++) { // Loop through and print every key value
             String result = instruction.equals("encode") ? encode(input, key) : decode(input, key);
             System.out.println("Key " + key + ": " + result);
         }
     }
 
     public static void main(String[] args) {
-        if (args.length != 2) {
+        if (args.length != 2) { // Checking for whitespaces
             System.err.println("Invalid input. Please use a correct number of args.");
             System.exit(2);
         }
@@ -41,8 +41,8 @@ public class CaeserCipher {
         String instruction = args[0];
         String input = args[1];
 
-        if (validateInput(instruction, input)) {
-            processInput(instruction, input);
+        if (validateInput(instruction, input)) { 
+            processInput(instruction, input); // Call functions to validate and proccess user input
         }
     }
 }
