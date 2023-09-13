@@ -2,7 +2,7 @@
 Jonathan Wang
 
 
-Group: Maria, Jinny
+Group (Discussion): Maria, Jinny
 
 This repository contains a CaeserCipher and a Vigenere Cipher program (each within their own .java file).
 
