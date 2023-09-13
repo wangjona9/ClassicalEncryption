@@ -1,4 +1,6 @@
 # ClassicalEncryption
+Jonathan Wang
+
 
 Group: Maria, Jinny
 
