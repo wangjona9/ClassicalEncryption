@@ -49,9 +49,8 @@ public class CaesarCipher {
         String instruction = args[0];
         String input = args[1];
 
-        if (validateInput(instruction, input)) { 
+        if (validateInput(instruction, input)) {
             processInput(instruction, input); // Call functions to validate and proccess user input
         }
     }
 }
-
