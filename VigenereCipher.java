@@ -13,7 +13,7 @@ public class VigenereCipher {
     
         for (int i = 0, j = 0; i < plaintext.length(); i++) { // Loop through result
             char c = plaintext.charAt(i); // Set char c as the index of the input plaintext string
-            char keyChar = key.charAt(j % key.length()); // Check if the key is in a valid unicode & lowercase
+            char keyChar = (key.isEmpty()) ? 'a' : key.charAt(j % key.length()); // Check if the key is in a valid unicode & lowercase and not empty
     
             int modifier = isEncoding ? 1 : -1; // Boolean check to adjust calculation (postive for encode, negative for decode)
             int transformedValue = ((((c - 'a') + modifier * (keyChar - 'a')) + 26) % 26) + 'a'; // Set and check char as a valid unicode value
