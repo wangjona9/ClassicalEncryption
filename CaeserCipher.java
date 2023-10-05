@@ -1,4 +1,12 @@
-public class CaeserCipher {
+/**
+ * An implementation of the Caesar
+ * Cipher. Implements the command line
+ * for user input.
+ * 
+ * @author Jonathan Wang
+ * September 2023
+ */
+public class CaesarCipher {
 
     public static String encode(String plaintext, int key) {
         char[] charArray = plaintext.toCharArray(); // Instantiate new charArray
