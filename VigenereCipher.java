@@ -31,33 +31,47 @@ public class VigenereCipher {
 
     public static String encode(String plaintext, String key) {
         return cipher(plaintext, key, true);
-    } // encode
+    } // Encode
 
     public static String decode(String encodedText, String key) {
         return cipher(encodedText, key, false);
-    } // decode
+    } // Decode
+
+    public static boolean validateInput(String[] args) {
+        if (args.length != 3) { 
+            System.out.println("Invalid input. Please use a correct number of args.");
+            return false;
+        } // Check for invalid number of args
+ 
+        String instruction = args[0];
+
+        if (!instruction.equals("encode") && !instruction.equals("decode")) {
+            System.out.println("Invalid input. Please Use encode/decode."); 
+            return false;
+        } // Check for incorrect instruction call
+
+        return true;
+    }
+
+    public static void processInput(String instruction, String text, String key) {
+        if (instruction.equals("encode")) { // Print result to string for encode instruction
+            String encodedText = encode(text, key);
+            System.out.println("Encoded Text: " + encodedText);
+        } else {
+            String decodedText = decode(text, key); // Print result to string for decode instruction
+            System.out.println("Decoded Text: " + decodedText);
+        }
+    }
 
     public static void main(String[] args) {
-        if (args.length != 3) {
-            System.out.println("Invalid input. Please use a correct number of args.");
+        if (!validateInput(args)) {
             return;
         }
 
-        String instruction = args[0]; // Initialize String args
+        String instruction = args[0];
         String text = args[1];
         String key = args[2];
 
-        if (!instruction.equals("encode") && !instruction.equals("decode")) {
-            System.out.println("Invalid input. Please Use encode/decode."); // Check for correct instruction
-            return;
-        }
-
-        if (instruction.equals("encode")) {
-            String encodedText = encode(text, key);
-            System.out.println("Encoded Text: " + encodedText); // Process the input and return the encoded text
-        } else {
-            String decodedText = decode(text, key);
-            System.out.println("Decoded Text: " + decodedText); // Process the input and return the decoded text
-        }
+        processInput(instruction, text, key);
     }
 }
